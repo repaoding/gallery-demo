@@ -25,8 +25,8 @@ public abstract class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter
         this.data = new ArrayList<>();
         data.add("http://img3.redocn.com/tupian/20150430/mantenghuawenmodianshiliangbeijing_3924704.jpg");
         data.add("http://img.taopic.com/uploads/allimg/120727/201995-120HG1030762.jpg");
-        data.add("http://pic23.photophoto.cn/20120530/0020033092420808_b.jpg");
         data.add("http://pic39.nipic.com/20140312/18085061_092729513131_2.jpg");
+        data.add("http://pic23.photophoto.cn/20120530/0020033092420808_b.jpg");
         data.add("http://img01.taopic.com/150508/318763-15050PU9398.jpg");
         data.add("http://img1.3lian.com/2015/a1/84/d/95.jpg");
         data.add("http://img.taopic.com/uploads/allimg/110915/29-11091512035335.jpg");
