@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.support.v7.widget.SpaceItemDecoration;
 import android.widget.ImageView;
 
 import cn.android.gallery.adapter.GalleryAdapter;
@@ -31,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         large_photo = findViewById(R.id.large_photo);
         list_photo = findViewById(R.id.list_photo);
+        final SpaceItemDecoration itemDecoration = new SpaceItemDecoration(getApplicationContext(), 6);
+        large_photo.addItemDecoration(itemDecoration);
+        list_photo.addItemDecoration(itemDecoration);
     }
 
     private void initLayoutManager() {
-        final LinearLayoutManager verticalManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        final RecyclerView.LayoutManager verticalManager = new GalleryLayoutManager(this, LinearLayoutManager.VERTICAL, false, 3, 24);
         large_photo.setLayoutManager(verticalManager);
-
         final RecyclerView.LayoutManager linearManager = new GalleryLayoutManager(this, LinearLayoutManager.HORIZONTAL, false, 3, 24);
-
         list_photo.setLayoutManager(linearManager);
-
         final SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(list_photo);
     }
@@ -59,23 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        list_photo.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                switch (newState) {
-                    case RecyclerView.SCROLL_STATE_DRAGGING:
-                        glideRequests.resumeRequests();
-                        break;
-                    case RecyclerView.SCROLL_STATE_SETTLING:
-                        glideRequests.pauseRequests();
-                        break;
-                    case RecyclerView.SCROLL_STATE_IDLE:
-                        glideRequests.resumeRequests();
-                        break;
-                }
-            }
-        });
         list_photo.setHasFixedSize(true);
 
     }

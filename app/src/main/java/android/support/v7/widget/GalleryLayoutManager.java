@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import static android.support.v7.widget.SpaceItemDecoration.dip2px;
+
 
 /**
  * created by sfx on 2017/9/5.
@@ -23,15 +25,6 @@ public class GalleryLayoutManager extends LinearLayoutManager {
         this.diffWidth = dip2px(diffDp, context.getResources().getDisplayMetrics());
     }
 
-    /**
-     * dp转成px
-     *
-     * @param dipValue
-     * @return
-     */
-    public static int dip2px(float dipValue, DisplayMetrics metrics) {
-        return (int) (dipValue * metrics.density + 0.5f);
-    }
 
     public GalleryLayoutManager(Context context, int orientation, boolean reverseLayout, int visitableCount, int diffDp) {
         super(context, orientation, reverseLayout);
@@ -61,7 +54,7 @@ public class GalleryLayoutManager extends LinearLayoutManager {
 
     @Override
     public int getDecoratedMeasuredHeight(View child) {
-        if (mOrientation == HORIZONTAL) {
+        if (mOrientation == VERTICAL) {
             final Rect insets = ((RecyclerView.LayoutParams) child.getLayoutParams()).mDecorInsets;
             if (diff <= 0) {
                 diff = (getHeight() - diffWidth) / visitableCount;
